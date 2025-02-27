@@ -1,0 +1,737 @@
+:root {
+  /* COLORS */
+  --primary-bg: #4e3d53;
+  --primary-bg-transparent: #4e3d5380;
+  --secondary-bg: #f3f4e1;
+  --text-color: #0F1123;
+  --text-color-invert: #ffff;
+  --accent-color: #A6F0C6;
+  --accent-muted: #7fc69e;
+
+  /*TYPOGRAPHY*/
+  --h1-font: "Oswald", serif;
+  --main-font: 'Helvetica', 'Arial', sans-serif;
+
+    /* FONT SIZES */
+  --base-font-size: 16px;
+  --small-font-size: calc(var(--base-font-size) / 1.618); /* ≈ 9.88px */
+  --body-font-size: var(--base-font-size); /* 16px */
+  --body-font-size-mobile: var(--base-font-size) - 2px;
+  --h3-font-size: calc(var(--base-font-size) * 1.618); /* ≈ 25.88px */
+  --h2-font-size: calc(var(--h3-font-size) * 1.618); /* ≈ 41.89px */
+  --h1-font-size: calc(var(--h2-font-size) * 1.618); /* ≈ 67.77px */
+
+  /* button variables */
+  --m: 2rem; /* change this for scaling */
+  --red: #FF6565;
+  --pink: #FF64F9;
+  --purple: #6B5FFF;
+  --blue: #4D8AFF;
+  --green: #5BFF89;
+  --yellow: #FFEE55;
+  --orange: #FF6D1B;
+}
+
+
+html, body { 
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+} 
+
+main {
+  flex: 1; /* Pushes the footer to the bottom if there's not enough content */
+  margin: 1rem;
+}
+
+h1 {
+  font-family: var(--h1-font);
+  color: var(--accent-color);
+  font-size: var(--h1-font-size);
+  font-weight: 900;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-family: var(--main-font);
+  font-size: var(--h2-font-size);
+  font-weight: 500;
+  margin: 0;
+}
+
+h3 {
+  font-size: var(--h3-font-size);
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Sticky Header */
+#sticky-header {
+  background: rgba(256, 256, 256, 0.3);
+  color: var(--text-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between; /* Space between name and nav */
+  align-items: center;
+  padding: 0 1.5rem; /* Space on the left and right */
+  box-sizing: border-box;
+}
+
+/* Add a container for the name and nav */
+#sticky-header .header-content {
+  display: flex;
+  justify-content: space-between; /* Align items to the right */
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Header Name */
+#sticky-header .header-name {
+  font-family: var(--h1-font);
+  font-size: var(--h2-font-size);
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-right: 2rem; /* Space between name and nav */
+  display: flex;
+  flex-grow: 1; /* Allows it to stay centered */
+  align-items: center;
+}
+
+
+
+@media (max-width: 480px) {
+  #sticky-header .header-name {
+    font-size: var(--h3-font-size);
+  }
+}
+
+/* Additional styles for the sticky header */
+#sticky-header.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  animation: slideDown 1.5s ease;
+}
+
+@keyframes slideDown {
+  from {
+      transform: translateY(-100%);
+  }
+  to {
+      transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+/* NAVIGATION */
+nav {
+  height: 100%;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  position: relative; /* Needed for dropdown positioning */
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  position: relative;
+  color: var(--text-color-invert);
+  text-decoration: none;
+  font-size: var(--h4-font-size);
+  padding: 0.5rem 0.1rem; /* Adjust padding for spacing */
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* Aligns underline with the bottom of nav */
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-muted);
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Show underline for active page */
+nav ul li a.active::after,
+nav ul li a:hover::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 900px) {
+  nav ul {
+    flex-direction: row; /* Ensure horizontal layout even on mobile */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: center; /* Center items horizontally */
+  }
+
+  nav ul li {
+    margin: 0 0.25rem; /* Adjust space between items for smaller screens */
+  }
+  nav ul li a {
+    font-size: 1rem;
+  }
+}
+
+
+nav ul li a:hover {
+  color: var(--accent-color);
+}
+
+/* Hamburger Menu (Hidden by Default on Desktop) */
+.hamburger-menu {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--accent-color);
+}
+
+/* Active Link Style */
+nav ul li a.active {
+  color: var(--accent-color);
+  /* font-weight: bold; */
+  border-bottom: 2px solid var(--accent-muted); /* Adds a bottom border */
+}
+
+/* Dropdown menu styling */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: calc(100% + 0.8rem); /* Adjust dropdown position */
+  background-color: var(--primary-bg-transparent);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 0.3rem 0rem;
+  margin: 0;
+  list-style: none;
+  border-radius: 0.5rem;
+  z-index: 10;
+}
+
+.dropdown-menu li {
+  margin: 1rem;
+}
+
+.dropdown-menu li a {
+  padding: 1rem 1rem;
+  margin: 0;
+  display: block; /* Make links fill the width */
+  color: var(--text-color-invert);
+  font-size: var(--h4-font-size);
+}
+
+.dropdown-menu li a:hover {
+  color: var(--accent-color);
+  border-radius: 0.5rem;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  display: block; /* Show the dropdown when hovered */
+}
+
+
+
+.dropdown-menu.show {
+  display: block;
+}
+
+/* Mobile Responsive Hamburger menu*/
+@media screen and (max-width: 900px) {
+  /* Hide regular menu and show hamburger */
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 5rem;
+    right: 0;
+    background: var(--primary-bg);
+    width: 100%;
+    text-align: center;
+    padding: 0rem 0;
+    border-top: solid var(--accent-color);
+    border-bottom: solid var(--accent-color);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu li {
+    margin: 1rem 0;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .dropdown {
+    position: relative; /* Keeps it in flow under parent */
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    right: 6rem;
+    top: 100%;
+    background: var(--primary-bg-transparent);
+    width: 35%;
+    text-align: center;
+    padding: 0;
+    border: solid var(--accent-color);
+    z-index: 1000;
+  }
+
+  .dropdown:hover .dropdown-menu,
+  .dropdown.active .dropdown-menu { /* Ensure it works for both hover & click */
+    display: block;
+  }
+
+  .dropdown-menu li {
+    padding: 0rem 0rem;
+  }
+
+  .dropdown-menu li a {
+    font-size: var(--body-font-size); /* Adjust text size */
+    display: block;
+  }
+
+  /* Space dropdown from its parent */
+  .dropdown-menu {
+    margin-top: 0.5rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+body {
+  font-family: var(--main-font); /* Leipäteksti */
+  font-size: var(--body-font-size);
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+  background-color: var(--primary-bg);
+}
+
+/* Hero section */
+.hero {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  overflow: auto;
+  text-align: center;
+  margin-top: 5rem;
+}
+
+/* Profile Image Styling */
+.hero img {
+  width: 40%; /* Set the width of the profile image */
+  object-fit: cover; /* Ensure the image covers the area */
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  max-height: 90%;
+}
+
+.hero-content {
+  position: relative;
+  /* background: rgba(0, 0, 0, 0.3); /* Dark background for contrast */
+  padding: 2rem 3rem;
+  /*border-radius: 8rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);*/
+  color: white;
+  width: 50%;
+  text-align: center; /* Ensure text is centered */
+  display: flex;
+  margin-right: 10px;
+  flex-direction: column; /* Stack the content vertically */
+  justify-content: center; /* Ensure everything is centered */
+  align-items: center; /* Center the social icons under the text */
+  gap: 1rem; /* Add some spacing between h1, h2, and social icons */
+}
+
+.hero-content h1 {
+  margin-bottom: 0rem;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: var(--h2-font-size);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: var(--h3-font-size);
+  }
+}
+
+.hero-content h2 {
+  margin-bottom: 0rem;
+  margin-top: 0;
+
+}
+
+@media (max-width: 768px) {
+  .hero-content h2 {
+    font-size: var(--h3-font-size);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h2 {
+    font-size: var(--h4-font-size);
+  }
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center; /* Center the icons horizontally */
+  gap: 20px; /* Add space between icons */
+  margin-top: 0rem; /* Add some space between the text and the icons */
+}
+
+.social-icons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.social-icons img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensure icons maintain their aspect ratio */
+}
+
+.social-icons a:hover img {
+  opacity: 0.5; /* Add subtle hover effect */
+}
+
+
+
+/* INFO TEXT STYLING */
+.info-text {
+  max-width: 800px;
+  margin: 4rem auto; /* Centering the content */
+  padding: 2rem;
+  text-align: left;
+  background: var(--primary-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.info-text h2 {
+  font-size: var(--h2-font-size);
+  font-weight: 600;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.info-text p {
+  font-size: var(--body-font-size);
+  line-height: 1.75; /* Improves readability */
+  color: var(--text-color-invert);
+  text-align: justify;
+}
+
+.info-text p::first-letter {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  float: left;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .info-text {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+  
+  .info-text h2 {
+    font-size: var(--h3-font-size);
+  }
+
+  .info-text p {
+    font-size: var(--body-font-size-mobile);
+    line-height: 1.6;
+  }
+}
+
+
+/* CONTACT BUTTON */
+button {
+  border: calc(0.08 * var(--m)) solid transparent;
+  position: relative;
+  color: #F3F3F3;
+  font-family: var(--h1-font);
+  font-size: var(--m);
+  border-radius: calc(0.7 * var(--m));
+  padding: calc(0.5 * var(--m)) calc(1 * var(--m));
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  
+  background:linear-gradient(#121213, #121213), linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),  linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+  background-origin: border-box;
+  background-clip: padding-box, border-box, border-box;
+  background-size: 200%;
+  animation: animate 2s infinite linear;
+}
+
+button::before {
+  content: '';
+  background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+  height: 30%;
+  width: 60%;
+  position: absolute;
+  bottom: -20%;
+  z-index: -5;
+  background-size: 200%;
+  animation: animate 2s infinite linear;
+  filter: blur(calc(0.8 * var(--m)));
+}
+
+button:hover, button:hover::before {
+  animation: animate 0.5s infinite linear;
+}
+
+@keyframes animate {
+  0% {background-position: 0}
+  100% {background-position: 200%}
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    --m: 2rem;
+  }
+}
+
+.pdf-viewer {
+  margin: 5rem 0;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-bg);
+}
+
+.download-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+  color: black;
+  background-color: var(--accent-color);
+  border-radius: 5px;
+
+
+}
+
+.download-link:hover {
+  background-color: var(--accent-muted);
+}
+
+#pdf-canvas {
+  border: none;
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* PORTFOLIO PAGE */
+
+#portfolio-gallery {
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto; /* Center-aligns within the parent */
+}
+
+.portfolio-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Dynamic grid */
+  gap: 1rem;
+  justify-items: center; /* Center items in their grid cell */
+  padding: 0;
+}
+
+@media (max-width: 480px) {
+  .portfolio-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Flexible sizing */
+    gap: 0.5rem; /* Smaller gap for tighter spacing */
+  }
+  .portfolio-gallery-item {
+    width: 100%; /* Let the container control the size */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
+
+.portfolio-gallery a {
+  display: inline-block;
+}
+
+.portfolio-gallery-item {
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* Adjust width dynamically */
+  max-width: 400px; /* Keep max width reasonable */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.portfolio-gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto; /* Allow natural height */
+  object-fit: contain; /* No cropping, ensures full image fits */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Ensure landscape images don't get too small */
+.portfolio-gallery-item img.landscape {
+  width: 100%; /* Takes full width */
+  height: auto; /* Adjust height proportionally */
+  max-height: 100%; /* Prevents exceeding parent height */
+  object-fit: contain; /* Keeps full image visible */
+}
+
+/* Allow portrait images to fit properly */
+.portfolio-gallery-item img.portrait {
+  width: auto; /* Adjusts width proportionally */
+  height: 100%; /* Takes full height */
+  max-width: 100%; /* Prevents overflow */
+  object-fit: cover; /* Ensures no empty spaces */
+}
+
+.portfolio-gallery-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 40, 51, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  color: var(--text-color-invert);
+  font-size: var(--h3-font-size);
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
+}
+
+.portfolio-gallery-item .overlay p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  font-family: var(--main-font);
+  font-weight: bold;
+  max-width: 95%;
+  word-wrap: break-word;
+}
+
+.portfolio-gallery-item:hover img {
+  filter: brightness(0.7);
+  transform: scale(1.00);
+}
+
+.portfolio-gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+.portfolio-gallery-item:hover .overlay .image-credit {
+  font-size: 0.5rem;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+}
+
+.portfolio-gallery-group {
+  margin-bottom: 1rem;
+}
+
+.portfolio-gallery-group h3 {
+  font-family: var(--main-font);
+  font-size: var(--h3-font-size);
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.portfolio-gallery img {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+footer {
+  background-color: #1f2833; /* Dark background for contrast */
+  color: #ffffff; /* Light text for readability */
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  font-family: var(--main-font);
+  position: relative;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+  font-weight: 300;
+}
+
+@media (max-width: 480px) {
+  footer {
+    font-size: 0.8rem; /* Slightly smaller text on small screens */
+    padding: 1.5rem 1rem; /* Adjusted padding */
+  }
+}
+

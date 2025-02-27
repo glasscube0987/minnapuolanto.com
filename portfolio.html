@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&  display=swap" rel="stylesheet">
+  <script defer src="script.js"></script>
+  <title>Minna Puolanto</title>
+</head>
+
+<body>
+
+  <header id="sticky-header">
+    <div class="header-content">
+      <div class="header-name">
+        <span>MINNA PUOLANTO</span>
+      </div>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Kuka</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Työt ˬ</a>
+            <ul class="dropdown-menu">
+              <li><a href="portfolio.html">Portfolio</a></li>
+              <li><a href="cv.html">CV</a></li>
+            </ul>
+          </li>
+          <li><a href="gallery.html">Galleria</a></li>
+          <li><a href="services.html">Tilausesitykset</a></li>
+          <li><a href="contact.html">Ota yhteyttä</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      ☰
+    </div>
+  </header>
+
+  <main>
+
+    <section id="portfolio-gallery">
+      <h1>PORTFOLIO</h1>
+
+      <h2>VALITUT TYÖT</h2>
+
+      <h3>TEATTERI</h3>
+
+  <!-- Teatteri SUBGROUP -->
+      <div class="portfolio-gallery-group">
+          <div class="portfolio-gallery">
+              <div class="portfolio-gallery-item">
+                  <a href="https://www.rednose.fi/ohjelma/punahilkka-k13/" target="_blank">
+                      <img src="images/PORTFOLIO-kansikuvat/PunahilkkaK13_nettisivut.png" alt="Punahilkka K13 esityskuva">
+                      <div class="overlay">
+                          <p>Punahilkka K13</p>
+                          <p class="image-credit">kuva: Ilari Kallinen</p>
+                      </div>
+                  </a>
+              </div>
+
+              <div class="portfolio-gallery-item">
+                <a href="https://www.rednose.fi/ohjelma/punahilkan-paluu/" target="_blank">
+                    <img src="images/PORTFOLIO-kansikuvat/PunahilkanPaluu_nettisivut.jpg" alt="Punahilkan paluu esityskuva">
+                    <div class="overlay">
+                        <p>Punahilkan paluu</p>
+                        <p class="image-credit">kuva: Ilari Kallinen</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="portfolio-gallery-item">
+              <a href="https://www.rednose.fi/ohjelma/catwalk/" target="_blank">
+                  <img src="images/PORTFOLIO-kansikuvat/Catwalk_nettisivut.jpg" alt="Catwalk esityskuva">
+                  <div class="overlay">
+                      <p>Catwalk</p>
+                      <p class="image-credit">kuva: Juho Rahijärvi</p>
+                  </div>
+              </a>
+            </div>
+
+          <div class="portfolio-gallery-item">
+            <a href="https://www.rednose.fi/ohjelma/revolution/" target="_blank">
+                <img src="images/PORTFOLIO-kansikuvat/REvolution_nettisivut.jpg" alt="REvolution esityskuva">
+                <div class="overlay">
+                    <p>RÉvolution</p>
+                    <p class="image-credit">kuva: Mark Sergeev</p>
+                </div>
+            </a>
+          </div>
+
+
+        <div class="portfolio-gallery-item">
+          <a href="https://teatteritakomo.fi/ohjelmisto/karkkainen-puolanto-pulkka-kaksi-luisevaa-rusakkoa/" target="_blank">
+              <img src="images/PORTFOLIO-kansikuvat/Rusakko5.jpg" alt="Kaksi luisevaa rusakkoa esityskuva">
+              <div class="overlay">
+                  <p>Kaksi luisevaa rusakkoa</p>
+                  <p class="image-credit">kuva: Nelly Kärkkäinen</p>
+              </div>
+          </a>
+      </div>
+
+
+      <div class="portfolio-gallery-item">
+        <a href="https://www.sivuun.net/yhteinen-iho.html" target="_blank">
+            <img src="images/PORTFOLIO-kansikuvat/YhteinenIho_nettisivut.jpg" alt="Yhteinen iho esityskuva">
+            <div class="overlay">
+                <p>Yhteinen iho</p>
+                <p class="image-credit">kuva: Tanja Ahola</p>
+            </div>
+        </a>
+      </div>
+
+      <div class="portfolio-gallery-item">
+        <a href="https://issuu.com/kotkankaupunginteatteri/docs/20190304_k_siohjelma_supermami_issu" target="_blank">
+            <img src="images/PORTFOLIO-kansikuvat/Supermami_nettisivut.jpg" alt="Supermami esityskuva">
+            <div class="overlay">
+                <p>Supermami</p>
+                <p class="image-credit">kuva: Juha Lahtinen</p>
+            </div>
+        </a>
+      </div>
+
+      <div class="portfolio-gallery-item">
+        <a href="https://www.rednose.fi/ohjelma/babylon-vallankahvassa/" target="_blank">
+            <img src="images/PORTFOLIO-kansikuvat/Babylon_nettisivut.jpg" alt="Babylon esityskuva">
+            <div class="overlay">
+                <p>Babylon</p>
+                <p class="image-credit">kuva: Mark Sergeev</p>
+            </div>
+        </a>
+      </div>
+
+
+      <div class="portfolio-gallery-item">
+        <a href="https://www.kokoteatteri.fi/esitysarkisto/tora-ja-sopu" target="_blank">
+            <img src="images/PORTFOLIO-kansikuvat/ToraJaSopu_nettisivut.jpg" alt="Tora ja Sopu esityskuva">
+            <div class="overlay">
+                <p>Tora ja Sopu</p>
+                <p class="image-credit">kuva: Cvijeta Miljak</p>
+            </div>
+        </a>
+      </div>
+
+      <div class="portfolio-gallery-item">
+        <a href="https://www.kokojazziisalmi.fi/esitysarkisto/maailma-luottaa-meihin" target="_blank">
+            <img src="images/PORTFOLIO-kansikuvat/MaailmaLuottaaMeihin_nettisivut.jpeg" alt="Maailma luottaa meihin esityskuva">
+            <div class="overlay">
+                <p>Maailma luottaa meihin</p>
+                <p class="image-credit">kuva: Cvijeta Miljak</p>
+            </div>
+        </a>
+      </div>
+
+      <div class="portfolio-gallery-item">
+        <a href="https://www.rednose.fi/ohjelma/lokki/" target="_blank">
+            <img src="images/PORTFOLIO-kansikuvat/Lokki_nettisivut.jpg" alt="Lokki esityskuva">
+            <div class="overlay">
+                <p>Lokki</p>
+                <p class="image-credit">kuva: Tero Ahonen</p>
+            </div>
+        </a>
+      </div>
+
+      <div class="portfolio-gallery-item">
+        <a href="https://www.kokojazziisalmi.fi/esitysarkisto/kuolema-korjaa-univelat" target="_blank">
+            <img src="images/PORTFOLIO-kansikuvat/KuolemaKorjaaUnivelat_nettisivut.jpg" alt="Kuolema korjaa univelat esityskuva">
+            <div class="overlay">
+                <p>Kuolema korjaa univelat</p>
+                <p class="image-credit">kuva: Jyrki Valkama</p>
+            </div>
+        </a>
+      </div>
+
+          </div>
+      </div>
+
+<!-- TV, MOVIES, VIDEO SUBGROUP -->
+
+<h3>TV, ELOKUVA, VIDEO</h3>
+<div class="portfolio-gallery-group">
+  <div class="portfolio-gallery">
+      <div class="portfolio-gallery-item">
+          <a href="https://www.yellowaffair.com/things-we-do-for-love" target="_blank">
+              <img src="images/PORTFOLIO-kansikuvat/ThingsWeDoForLove_flyer_front_kjs03final_sm.jpg" alt="Things we do for love elokuvan flyer">
+              <div class="overlay">
+                  <p>Things we do for love</p>
+                  <p class="image-credit">kuva:</p>
+              </div>
+          </a>
+      </div>
+
+      <div class="portfolio-gallery-item">
+        <iframe src="https://player.vimeo.com/video/109636942" 
+                width="1280" height="720" 
+                frameborder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+    </div>
+
+    </div>
+  </div>
+
+<!-- RADIOPLAY SUBGROUP -->
+
+<h3>KUUNNELMA</h3>
+      <div class="portfolio-gallery-group">
+        <div class="portfolio-gallery">
+            <div class="portfolio-gallery-item">
+                <a href="https://areena.yle.fi/podcastit/1-3880970" target="_blank">
+                    <img src="images/PORTFOLIO-kansikuvat/PitkanLiitonSalaisuus_nettisivut.jpg" alt="Pitkän liiton salaisuus kuva">
+                    <div class="overlay">
+                        <p>Pitkän liiton salaisuus</p>
+                        <p class="image-credit">kuva: Laura Pohjavirta</p>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="portfolio-gallery-item">
+              <a href="https://areena.yle.fi/podcastit/1-2212812" target="_blank">
+                  <img src="images/PORTFOLIO-kansikuvat/KuolemaKorjaaUnivelat_nettisivut.jpg" alt="Kuolema korjaa univelat kuva">
+                  <div class="overlay">
+                      <p>Kuolema korjaa univelat</p>
+                      <p class="image-credit">kuva: Jyrki Valkama</p>
+                  </div>
+              </a>
+          </div>
+          </div>
+        </div>
+
+
+
+<h3>TEKSTIT/KIRJOITUSTYÖT</h3>
+       <!-- TEXTS SUBGROUP -->
+       <div class="portfolio-gallery-group">
+        <div class="portfolio-gallery">
+            <div class="portfolio-gallery-item">
+                <a href="https://www.rednose.fi/ohjelma/punahilkka-k13/" target="_blank">
+                    <img src="images/PORTFOLIO-kansikuvat/PunahilkkaK13_nettisivut.png" alt="Punahilkka K13 esityskuva">
+                    <div class="overlay">
+                        <p>Punahilkka K13</p>
+                        <p class="image-credit">kuva: Ilari Kallinen</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="portfolio-gallery-item">
+              <a href="https://www.rednose.fi/ohjelma/punahilkan-paluu/" target="_blank">
+                  <img src="images/PORTFOLIO-kansikuvat/PunahilkanPaluu_nettisivut.jpg" alt="Punahilkan paluu esityskuva">
+                  <div class="overlay">
+                      <p>Punahilkan paluu</p>
+                      <p class="image-credit">kuva: Ilari Kallinen</p>
+                  </div>
+              </a>
+          </div>
+
+          <div class="portfolio-gallery-item">
+            <a href="https://www.rednose.fi/ohjelma/catwalk/" target="_blank">
+                <img src="images/PORTFOLIO-kansikuvat/Catwalk_nettisivut.jpg" alt="Catwalk esityskuva">
+                <div class="overlay">
+                    <p>Catwalk</p>
+                    <p class="image-credit">kuva: Juho Rahijärvi</p>
+                </div>
+            </a>
+          </div>
+
+        <div class="portfolio-gallery-item">
+          <a href="https://www.rednose.fi/ohjelma/revolution/" target="_blank">
+              <img src="images/PORTFOLIO-kansikuvat/REvolution_nettisivut.jpg" alt="REvolution esityskuva">
+              <div class="overlay">
+                  <p>RÉvolution</p>
+                  <p class="image-credit">kuva: Mark Sergeev</p>
+              </div>
+          </a>
+        </div>
+
+
+      <div class="portfolio-gallery-item">
+        <a href="https://teatteritakomo.fi/ohjelmisto/karkkainen-puolanto-pulkka-kaksi-luisevaa-rusakkoa/" target="_blank">
+            <img src="images/PORTFOLIO-kansikuvat/Rusakko5.jpg" alt="Kaksi luisevaa rusakkoa esityskuva">
+            <div class="overlay">
+                <p>Kaksi luisevaa rusakkoa</p>
+                <p class="image-credit">kuva: Nelly Kärkkäinen</p>
+            </div>
+        </a>
+    </div>
+
+
+    <div class="portfolio-gallery-item">
+      <a href="https://www.rednose.fi/ohjelma/babylon-vallankahvassa/" target="_blank">
+          <img src="images/PORTFOLIO-kansikuvat/Babylon_nettisivut.jpg" alt="Babylon esityskuva">
+          <div class="overlay">
+              <p>Babylon</p>
+              <p class="image-credit">kuva: Mark Sergeev</p>
+          </div>
+      </a>
+    </div>
+
+    <div class="portfolio-gallery-item">
+      <a href="https://areena.yle.fi/podcastit/1-3880970" target="_blank">
+          <img src="images/PORTFOLIO-kansikuvat/PitkanLiitonSalaisuus_nettisivut.jpg" alt="Pitkän liiton salaisuus kuva">
+          <div class="overlay">
+              <p>Pitkän liiton salaisuus</p>
+              <p class="image-credit">kuva: Laura Pohjavirta</p>
+          </div>
+      </a>
+  </div>
+
+
+    <div class="portfolio-gallery-item">
+      <a href="https://www.kokoteatteri.fi/esitysarkisto/tora-ja-sopu" target="_blank">
+          <img src="images/PORTFOLIO-kansikuvat/ToraJaSopu_nettisivut.jpg" alt="Tora ja Sopu esityskuva">
+          <div class="overlay">
+              <p>Tora ja Sopu</p>
+              <p>-</p>
+              <p>komedia vaikka väkisin</p>
+              <p class="image-credit">kuva: Cvijeta Miljak</p>
+          </div>
+      </a>
+    </div>
+
+
+    <div class="portfolio-gallery-item">
+      <a href="https://www.kokojazziisalmi.fi/esitysarkisto/kuolema-korjaa-univelat" target="_blank">
+          <img src="images/PORTFOLIO-kansikuvat/KuolemaKorjaaUnivelat_nettisivut.jpg" alt="Kuolema korjaa univelat esityskuva">
+          <div class="overlay">
+              <p>Kuolema korjaa univelat</p>
+              <p class="image-credit">kuva: Jyrki Valkama</p>
+          </div>
+      </a>
+    </div>
+
+
+    <div class="portfolio-gallery-item">
+      <a href="" target="_blank">
+          <img src="images/PORTFOLIO-kansikuvat/AanestaMuaAuts_CvijetaMiljak.jpg" alt="Äänestä mua esityskuva">
+          <div class="overlay">
+              <p>Äänestä mua</p>
+              <p class="image-credit">kuva: Cvijeta Miljak</p>
+          </div>
+      </a>
+    </div>
+
+        </div>
+    </div>
+
+    <h3>KOREOGRAFIAT</h3>
+    <!-- CHOREOGRAPHY SUBGROUP -->
+    <div class="portfolio-gallery-group">
+      <div class="portfolio-gallery">
+          
+
+        <div class="portfolio-gallery-item">
+          <a href="https://www.rednose.fi/ohjelma/catwalk/" target="_blank">
+              <img src="images/PORTFOLIO-kansikuvat/Catwalk_nettisivut.jpg" alt="Catwalk esityskuva">
+              <div class="overlay">
+                  <p>Catwalk</p>
+                  <p class="image-credit">kuva: Juho Rahijärvi</p>
+              </div>
+          </a>
+        </div>
+
+      <div class="portfolio-gallery-item">
+        <a href="https://www.rednose.fi/ohjelma/revolution/" target="_blank">
+            <img src="images/PORTFOLIO-kansikuvat/REvolution_nettisivut.jpg" alt="REvolution esityskuva">
+            <div class="overlay">
+                <p>RÉvolution</p>
+                <p class="image-credit">kuva: Mark Sergeev</p>
+            </div>
+        </a>
+      </div>
+
+
+  <div class="portfolio-gallery-item">
+    <a href="https://issuu.com/kotkankaupunginteatteri/docs/20190304_k_siohjelma_supermami_issu" target="_blank">
+        <img src="images/PORTFOLIO-kansikuvat/Supermami_nettisivut.jpg" alt="Supermami esityskuva">
+        <div class="overlay">
+            <p>Supermami</p>
+            <p class="image-credit">kuva: Juha Lahtinen</p>
+        </div>
+    </a>
+  </div>
+
+  <div class="portfolio-gallery-item">
+    <a href="https://www.rednose.fi/ohjelma/babylon-vallankahvassa/" target="_blank">
+        <img src="images/PORTFOLIO-kansikuvat/Babylon_nettisivut.jpg" alt="Babylon esityskuva">
+        <div class="overlay">
+            <p>Babylon</p>
+            <p class="image-credit">kuva: Mark Sergeev</p>
+        </div>
+    </a>
+  </div>
+
+
+  <div class="portfolio-gallery-item">
+    <a href="https://www.kokojazziisalmi.fi/esitysarkisto/maailma-luottaa-meihin" target="_blank">
+        <img src="images/PORTFOLIO-kansikuvat/MaailmaLuottaaMeihin_nettisivut.jpeg" alt="Maailma luottaa meihin esityskuva">
+        <div class="overlay">
+            <p>Maailma luottaa meihin</p>
+            <p class="image-credit">kuva: Cvijeta Miljak</p>
+        </div>
+    </a>
+  </div>
+
+
+  <div class="portfolio-gallery-item">
+    <a href="https://www.kokojazziisalmi.fi/esitysarkisto/kuolema-korjaa-univelat" target="_blank">
+        <img src="images/PORTFOLIO-kansikuvat/KuolemaKorjaaUnivelat_nettisivut.jpg" alt="Kuolema korjaa univelat esityskuva">
+        <div class="overlay">
+            <p>Kuolema korjaa univelat</p>
+            <p class="image-credit">kuva: Jyrki Valkama</p>
+        </div>
+    </a>
+  </div>
+
+      </div>
+  </div>
+
+
+    </section>  
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 All rights reserved.</p>
+  </footer>
+
+</body>
+
+</html>
