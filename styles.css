@@ -697,7 +697,8 @@ button:hover, button:hover::before {
 
 
 .portfolio-gallery-item img {
-  width: 100%;
+  aspect-ratio: attr(width) / attr(height);
+  max-width: 100%;
   object-fit: contain; /* No cropping, ensures full image fits */
   transition: transform 0.3s ease, filter 0.3s ease;
   display: block;
