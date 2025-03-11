@@ -1,9 +1,11 @@
 :root {
   /* COLORS */
-  --primary-bg: #F1F5F8; /* Light grayish-blue for background */
+  --primary-bg: #F1F5F8;
   --primary-bg-transparent: #f1f5f8ae;
   --secondary-bg: #E0E7EE; /* Slightly darker for sections */
   --tertiary-bg: #c0cddb;
+  --dark-bg: #1f2833; /* Dark blue-gray */
+  --dark-bg2: #515e6d; /* Dark blue-gray */
   
   --text-color: #4E3D53; /* Dark blue-gray for text */
   --text-color-muted: #A1AAB4; /* Soft light gray for less emphasized text */
@@ -15,7 +17,7 @@
   --accent-muted: #A3D9D0; /* Soft pastel teal for secondary accents */
   --accent-muted-transparent: #A3D9D0B3;
 
-  --border-color: #D1D9E6; /* Light gray-blue for dividers and borders */
+  --border-color: #aeb3ba; /* Light gray-blue for dividers and borders */
 
   /*TYPOGRAPHY*/
   --h1-font: "Oswald", serif;
@@ -64,6 +66,9 @@ h1 {
   font-weight: 800;
   margin-bottom: 0;
   line-height: 4rem;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: var(--accent-color);
 }
 
 h2 {
@@ -362,7 +367,7 @@ body {
 /* Hero section */
 .hero {
   position: relative;
-  height: 100vh; /* Full viewport height */
+  height: 90vh; /* Full viewport height */
   width: 100vw; /* Full viewport width */
   display: flex;
   flex-direction: row;
@@ -377,6 +382,7 @@ body {
 @media (max-width: 900px) {
   .hero {
     flex-direction: column; /* Stack elements vertically */
+    height: 100vh;
   }
 }
 
@@ -384,9 +390,32 @@ body {
 .hero img {
   width: 100%;  /* Let the image fill its container */
   max-width: 500px;  /* Set a maximum size */
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
   margin-bottom: 2rem;
+}
+
+
+#hero-profile-img {
+  object-fit: cover;
+  overflow: auto;
+}
+
+
+@media (max-width: 1000px) {
+  #hero-profile-img {
+    max-width: 70vw; /* Scale image relative to viewport width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero-profile-img {
+    max-width: 65vw; /* Scale image relative to viewport width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain;
+  }
 }
 
 /* Hero Content Styling */
@@ -416,7 +445,7 @@ body {
 
 @media (max-width: 480px) {
   .hero-content h1 {
-    font-size: var(--h3-font-size);
+    font-size: var(--h2-font-size);
   }
 }
 
@@ -469,13 +498,15 @@ body {
 
 /* INFO TEXT STYLING */
 .info-text {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 4rem auto; /* Centering the content */
   padding: 2rem;
   text-align: left;
-  background: var(--primary-bg);
+  background: var(--secondary-bg);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid transparent; /* Initially transparent */
+  transition: border 0.3s ease-in-out;
 }
 
 .info-text h2 {
@@ -490,7 +521,7 @@ body {
 
 .info-text p {
   font-size: var(--body-font-size);
-  line-height: 1.75; /* Improves readability */
+  line-height: 1.5; /* Improves readability */
   color: var(--text-color);
   text-align: justify;
 }
@@ -515,13 +546,18 @@ body {
 
   .info-text p {
     font-size: var(--body-font-size-mobile);
-    line-height: 1.6;
+    line-height: 1.3;
   }
 }
 
+.info-text:hover {
+  border-color: var(--accent-color);
+}
+
+
 
 /* CONTACT BUTTON */
-button {
+.flare-button {
   border: calc(0.08 * var(--m)) solid transparent;
   position: relative;
   color: #F3F3F3;
@@ -540,7 +576,7 @@ button {
   animation: animate 2s infinite linear;
 }
 
-button::before {
+.flare-button::before {
   content: '';
   background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
   height: 30%;
@@ -553,7 +589,7 @@ button::before {
   filter: blur(calc(0.8 * var(--m)));
 }
 
-button:hover, button:hover::before {
+.flare-button:hover, .flare-button:hover::before {
   animation: animate 0.5s infinite linear;
 }
 
@@ -568,46 +604,45 @@ button:hover, button:hover::before {
   }
 }
 
+.cv-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the button horizontally */
+  justify-content: center;
+  min-height: 100vh; /* Ensures full viewport height */
+  padding-bottom: 1rem; /* Creates space below */
+}
+
 .pdf-viewer {
-  margin: 5rem 0;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: var(--primary-bg);
+  width: 100%;
+  height: 80vh;
+  border: none; /* Removes unwanted borders */
+  margin-top: 5rem;
 }
 
 .download-link {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+  display: block;
+  margin: 1rem auto;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
   text-decoration: none;
   color: black;
   background-color: var(--accent-color);
   border-radius: 5px;
-
-
+  text-align: center;
 }
 
 .download-link:hover {
   background-color: var(--accent-muted);
 }
 
-#pdf-canvas {
-  border: none;
-  display: block;
-  margin: 1rem auto;
-  max-width: 100%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
 
-
-/* PORTFOLIO PAGE */
-
+/* Portfolio container */
 #portfolio-gallery {
   text-align: center;
   max-width: 100%;
-  margin: 0 auto; /* Center-aligns within the parent */
+  margin: 0 auto;
 }
 
 #portfolio-gallery h1 {
@@ -619,106 +654,116 @@ button:hover, button:hover::before {
 }
 
 #portfolio-gallery h3 {
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 2rem;
   margin: 0;
   font-weight: 600;
-  border-bottom: solid var(--border-color)
+  color: var(--accent-color);
+  border-bottom: solid var(--border-color);
 }
 
-
-
-/* ALTERNATING BG COLORS */
+/* Alternating background colors */
 .portfolio-gallery-group:nth-of-type(odd) {
-  background-color: var(--accent-muted-transparent);
+  background-color: var(--secondary-bg);
 }
 
 .portfolio-gallery-group:nth-of-type(even) {
-  background-color: var(--secondary-bg);
+  background-color: var(--tertiary-bg);
 }
 
 .portfolio-gallery-group {
   opacity: 0;
-  transform: translateY(30px); /* Start slightly lower */
+  transform: translateY(30px);
+  -webkit-transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-/* When the section enters the viewport */
+.portfolio-gallery-group-h3 {
+  padding-left: 1rem;
+  padding-top: 2rem;
+  color: var(--text-color) !important;
+}
+
+/* When section is visible */
 .portfolio-gallery-group.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* Grid for portfolio gallery */
 .portfolio-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, max-content)); /* Dynamic grid */
+  grid-template-columns: repeat(auto-fill, minmax(300px, max-content));
   gap: 1rem;
-  justify-items: center; /* Center items in their grid cell */
+  justify-items: center;
   padding: 1rem;
 }
 
 @media (max-width: 480px) {
   .portfolio-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Flexible sizing */
-    gap: 0.5rem; /* Smaller gap for tighter spacing */
-  }
-  .portfolio-gallery-item {
-    width: 100%; /* Let the container control the size */
-    height: auto; /* Maintain aspect ratio */
+    grid-template-columns: repeat(auto-fit, minmax(120px, max-content));
+    gap: 0.5rem;
   }
 }
 
-.portfolio-gallery a {
-  display: inline-block;
-}
-
+/* Item container styles */
 .portfolio-gallery-item {
   position: relative;
   overflow: hidden;
-  width: 100%; /* Adjust width dynamically */
-  max-width: 400px; /* Keep max width reasonable */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
+  width: 100%;
+  padding-bottom: 75%; /* Aspect ratio for images */
+  height: 0;
 }
 
-.portfolio-gallery-item iframe {
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
-  width: 100%; /* Adjust width dynamically */
-  height: 100%;
-  display: block;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-}
-
-
+/* Styles for images */
 .portfolio-gallery-item img {
-  aspect-ratio: attr(width) / attr(height);
-  max-width: 100%;
-  object-fit: contain; /* No cropping, ensures full image fits */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease, filter 0.3s ease;
-  display: block;
 }
 
-/* Ensure landscape images don't get too small */
+/* Landscape image specific style */
 .portfolio-gallery-item img.landscape {
-  width: 100%; /* Takes full width */
-  max-height: 100%; /* Prevents exceeding parent height */
-  object-fit: contain; /* Keeps full image visible */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
-/* Allow portrait images to fit properly */
+/* Portrait image specific style */
 .portfolio-gallery-item img.portrait {
-  width: auto; /* Adjusts width proportionally */
-  height: 100%; /* Takes full height */
-  max-width: 100%; /* Prevents overflow */
-  object-fit: cover; /* Ensures no empty spaces */
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
+/* Video container */
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio for video */
+  overflow: hidden;
+  
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+/* Overlay for portfolio items */
 .portfolio-gallery-item .overlay {
   position: absolute;
   top: 0;
@@ -727,7 +772,6 @@ button:hover, button:hover::before {
   height: 100%;
   background: rgba(31, 40, 51, 0.5);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   opacity: 0;
@@ -738,33 +782,15 @@ button:hover, button:hover::before {
   padding: 0.5rem;
   box-sizing: border-box;
   transition: opacity 0.3s ease;
-  border-radius: 8px;
-}
-
-.portfolio-gallery-item .overlay p {
-  margin: 0;
-  padding: 0;
-  line-height: 1.2;
-  font-family: var(--main-font);
-  font-weight: bold;
-  max-width: 95%;
-  word-wrap: break-word;
-}
-
-.portfolio-gallery-item:hover img {
-  filter: brightness(0.7);
-  transform: scale(1.00);
 }
 
 .portfolio-gallery-item:hover .overlay {
   opacity: 1;
 }
 
-.portfolio-gallery-item:hover .overlay .image-credit {
-  font-size: 0.5rem;
-  position: absolute;
-  bottom: 0.5rem;
-  left: 0.5rem;
+.portfolio-gallery-item:hover img {
+  filter: brightness(0.7);
+  transform: scale(1.00);
 }
 
 .portfolio-gallery-group {
@@ -783,16 +809,317 @@ button:hover, button:hover::before {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.portfolio-gallery-item:hover .overlay .image-credit {
+  font-size: 0.5rem;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  cursor: pointer;
+}
 
 
 
+
+
+/* GALLERY PAGE */
+#headshot-gallery {
+  padding: 3rem;
+}
+
+#headshot-gallery h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Grid Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+  justify-content: center;
+}
+
+/* Headshot Images */
+.gallery img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  aspect-ratio: 2 / 3; /* Ensures consistent aspect ratio (common for headshots) */
+  object-fit: cover; /* Ensures images don’t stretch */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block; /* Fixes Safari rendering bug */
+}
+
+.gallery img.landscape {
+  width: 100%;
+  height: auto;
+  max-height: 250px; /* Keeps it balanced */
+  max-width: 100%;
+  display: block;
+  object-fit: contain; /* Ensures full image fits without stretching */
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  grid-column: span 4; /* Makes it take up four columns */
+}
+
+/* Responsive Fix for Smaller Screens */
+@media (max-width: 900px) {
+  .gallery {
+    padding: 2rem;
+  }
+  .gallery img.landscape {
+    grid-column: span 2; /* Takes only 2 columns */
+  }
+}
+
+@media (max-width: 500px) {
+  .gallery {
+    padding: 2rem;
+  }
+  .gallery img.landscape {
+    grid-column: span 1; /* Behaves like other images */
+  }
+}
+
+/* Hover Effect */
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.gallery img.landscape:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.0);
+}
+
+
+
+
+/* Lightbox Styling */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Visible state when image is clicked */
+#lightbox.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Lightbox Image */
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Close Button */
+#lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+/* Navigation Arrows */
+.lightbox-nav span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+.lightbox-nav .prev {
+  left: 20px;
+}
+
+.lightbox-nav .next {
+  right: 20px;
+}
+
+/* Hover Effect */
+.lightbox-nav span:hover {
+  opacity: 0.7;
+}
+
+
+
+
+
+/* SERVICES PAGE */
+
+#services-introduction {
+  padding: 2rem;
+  margin-top: 8rem;
+  text-align: center;
+}
+
+#services-introduction p {
+  font-size: var(--h3-font-size);
+}
+
+#services-introduction h1 {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  #services-introduction h1{
+    font-size: 4rem;
+  }
+  
+}
+
+#services-section {
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+}
+
+#services-section h2 {
+  text-decoration: dashed underline var(--accent-hover);
+}
+
+#services-section p a {
+  color: var(--accent-muted);
+}
+
+.carousel {
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  margin-left: 2rem;
+  overflow: hidden;
+  justify-content: flex-start;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+  text-align: left;
+  border-radius: 8px;
+}
+
+.carousel-item {
+  width: 100%;
+  height: auto;
+  display: none; /* Initially hide all images */
+}
+
+.carousel-item.active {
+  display: block; /* Only show the active image */
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+
+/* TEACHING PAGE */
+.full-image {
+  width: 75vw; /* 90% of the viewport width */
+  max-width: 800px; /* Prevents it from getting too large on big screens */
+  height: auto; /* Keeps aspect ratio */
+  display: block; /* Removes extra spacing below inline images */
+  margin: 0 auto; /* Centers the image */
+  border-radius: 8px; /* Optional: adds rounded corners */
+}
+
+#teaching-img {
+  margin-top: 8rem;
+}
+
+
+
+
+
+
+/* CONTACT PAGE */
+.page-with-background {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('images/MIELENMAISEMAKUVAT/Mielenmaisemakuva1_nettisivut.jpg'); /* Background image */
+  background-size: cover;
+  background-position: center left;
+  background-repeat: no-repeat;
+  position: relative; /* For overlay positioning */
+}
+
+/* Add the overlay effect */
+.page-with-background::after {
+  content: ''; /* Empty content to create a pseudo-element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--primary-bg);
+  opacity: 0.7; /* Adjust the opacity */
+  z-index: 1; /* Overlay should be above the image, below the content */
+}
+
+/* Contact info styling */
 #contact-info {
   text-align: center;
   margin-top: 15rem;
+  position: relative; /* Ensure content is positioned above the overlay */
+  z-index: 2; /* Ensure it's above the overlay */
 }
 
 #contact-info a {
   text-decoration: underline var(--accent-muted);
+  z-index: 2;
+}
+
+#contact-info h2 {
+  color: black;
+  z-index: 2;
 }
 
 #contact-info .button-container {
@@ -801,10 +1128,16 @@ button:hover, button:hover::before {
   justify-content: center;
   padding: 1rem;
   gap: 20px; /* Space between buttons */
+  z-index: 2;
 }
 
 #contact-info .button-container a {
   text-decoration: none;
+  z-index: 2;
+}
+
+.flare-button {
+  z-index: 2;
 }
 
 
@@ -821,6 +1154,7 @@ footer {
   font-family: var(--main-font);
   position: relative;
   width: 100%;
+  z-index: 2;
 }
 
 footer p {

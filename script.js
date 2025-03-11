@@ -98,3 +98,107 @@ document.querySelectorAll('.dropdown').forEach(dropdown => {
       observer.observe(group);
     });
   });
+
+
+
+  /* GALLERY PAGE LIGHTBOX FUNCTIONALITY */
+  document.addEventListener("DOMContentLoaded", function () {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".close");
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+    const images = document.querySelectorAll(".gallery-img");
+  
+    let currentIndex = 0;
+  
+    function openLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = images[currentIndex].src;
+      lightbox.classList.add("show");
+    }
+  
+    function closeLightbox() {
+      lightbox.classList.remove("show");
+    }
+  
+    function showNext() {
+      currentIndex = (currentIndex + 1) % images.length; // Loop back to first image
+      lightboxImg.src = images[currentIndex].src;
+    }
+  
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length; // Loop to last image
+      lightboxImg.src = images[currentIndex].src;
+    }
+  
+    // Open lightbox when an image is clicked
+    images.forEach((img, index) => {
+      img.addEventListener("click", function () {
+        openLightbox(index);
+      });
+    });
+  
+    // Close lightbox
+    closeBtn.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => {
+      if (e.target !== lightboxImg && !e.target.classList.contains("prev") && !e.target.classList.contains("next")) {
+        closeLightbox();
+      }
+    });
+  
+    // Arrow navigation
+    nextBtn.addEventListener("click", showNext);
+    prevBtn.addEventListener("click", showPrev);
+  
+    // Keyboard controls
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+    });
+  });
+  
+
+  /* CAROUSEL GALLERY ON SERVICES PAGE */
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".carousel").forEach(carousel => {
+        const items = carousel.querySelectorAll(".carousel-item");
+        const prevButton = carousel.querySelector(".carousel-btn.prev");
+        const nextButton = carousel.querySelector(".carousel-btn.next");
+        let index = 0;
+
+        function showImage(newIndex) {
+            if (newIndex < 0) {
+                index = items.length - 1;
+            } else if (newIndex >= items.length) {
+                index = 0;
+            } else {
+                index = newIndex;
+            }
+
+            // Hide all images in this carousel
+            items.forEach(item => item.classList.remove("active"));
+            
+            // Show the new active image
+            items[index].classList.add("active");
+        }
+
+        // Event Listeners (specific to this carousel)
+        nextButton.addEventListener("click", () => showImage(index + 1));
+        prevButton.addEventListener("click", () => showImage(index - 1));
+
+        // Initialize first image in this carousel
+        showImage(index);
+    });
+});
+
+
+
+
+
+
+
+
+  
+  

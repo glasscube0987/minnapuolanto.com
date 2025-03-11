@@ -1,12 +1,23 @@
 :root {
   /* COLORS */
-  --primary-bg: #4e3d53;
-  --primary-bg-transparent: #4e3d5380;
-  --secondary-bg: #f3f4e1;
-  --text-color: #0F1123;
-  --text-color-invert: #ffff;
-  --accent-color: #A6F0C6;
-  --accent-muted: #7fc69e;
+  --primary-bg: #F1F5F8; /* Light grayish-blue for background */
+  --primary-bg-transparent: #f1f5f8ae;
+  --secondary-bg: #E0E7EE; /* Slightly darker for sections */
+  --tertiary-bg: #c0cddb;
+  --dark-bg: #1f2833; /* Dark blue-gray */
+  --dark-bg2: #515e6d; /* Dark blue-gray */
+  
+  --text-color: #4E3D53; /* Dark blue-gray for text */
+  --text-color-muted: #A1AAB4; /* Soft light gray for less emphasized text */
+  --text-color-special: #4E3D53;
+  --text-color-invert: #F1F5F8; /* Light gray for dark backgrounds */
+  
+  --accent-color: #00BFAE; /* Vibrant teal for accents */
+  --accent-hover: #009F8F; /* Darker teal for hover states */
+  --accent-muted: #A3D9D0; /* Soft pastel teal for secondary accents */
+  --accent-muted-transparent: #A3D9D0B3;
+
+  --border-color: #aeb3ba; /* Light gray-blue for dividers and borders */
 
   /*TYPOGRAPHY*/
   --h1-font: "Oswald", serif;
@@ -42,20 +53,25 @@ html, body {
 
 main {
   flex: 1; /* Pushes the footer to the bottom if there's not enough content */
-  margin: 1rem;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 h1 {
   font-family: var(--h1-font);
   color: var(--accent-color);
   font-size: var(--h1-font-size);
-  font-weight: 900;
+  font-weight: 800;
   margin-bottom: 0;
+  line-height: 4rem;
 }
 
 h2 {
   font-family: var(--main-font);
   font-size: var(--h2-font-size);
+  color: var(--accent-hover);
   font-weight: 500;
   margin: 0;
 }
@@ -68,7 +84,7 @@ h3 {
 
 /* Sticky Header */
 #sticky-header {
-  background: rgba(256, 256, 256, 0.3);
+  background: var(--accent-muted-transparent);
   color: var(--text-color);
   position: fixed;
   top: 0;
@@ -81,6 +97,7 @@ h3 {
   align-items: center;
   padding: 0 1.5rem; /* Space on the left and right */
   box-sizing: border-box;
+  border-bottom: solid var(--border-color);
 }
 
 /* Add a container for the name and nav */
@@ -155,9 +172,11 @@ nav ul li {
 
 nav ul li a {
   position: relative;
-  color: var(--text-color-invert);
+  color: var(--text-color-special);
+  font-family: var(--h1-font);
+  font-weight: 600;
   text-decoration: none;
-  font-size: var(--h4-font-size);
+  font-size: var(--body-font-size);
   padding: 0.5rem 0.1rem; /* Adjust padding for spacing */
 }
 
@@ -240,7 +259,7 @@ nav ul li a.active {
   padding: 1rem 1rem;
   margin: 0;
   display: block; /* Make links fill the width */
-  color: var(--text-color-invert);
+  color: var(--text-color-special);
   font-size: var(--h4-font-size);
 }
 
@@ -349,48 +368,55 @@ body {
   width: 100vw; /* Full viewport width */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Align items vertically in the center */
+  gap: 20px; /* Space between the profile image and content */
   overflow: auto;
   text-align: center;
   margin-top: 5rem;
 }
 
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column; /* Stack elements vertically */
+  }
+}
+
 /* Profile Image Styling */
 .hero img {
-  width: 40%; /* Set the width of the profile image */
-  object-fit: cover; /* Ensure the image covers the area */
-  margin-left: 2rem;
-  margin-bottom: 2rem;
+  width: 100%;  /* Let the image fill its container */
+  max-width: 500px;  /* Set a maximum size */
+  object-fit: cover;
   border-radius: 8px;
-  max-height: 90%;
+  margin-bottom: 2rem;
 }
 
+#hero-profile-img {
+  border: solid 2px black;
+}
+
+/* Hero Content Styling */
 .hero-content {
-  position: relative;
-  /* background: rgba(0, 0, 0, 0.3); /* Dark background for contrast */
-  padding: 2rem 3rem;
-  /*border-radius: 8rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);*/
-  color: white;
+  color: var(--text-color);
   width: 50%;
-  text-align: center; /* Ensure text is centered */
+  text-align: center;
   display: flex;
-  margin-right: 10px;
-  flex-direction: column; /* Stack the content vertically */
-  justify-content: center; /* Ensure everything is centered */
-  align-items: center; /* Center the social icons under the text */
-  gap: 1rem; /* Add some spacing between h1, h2, and social icons */
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+  align-items: center;
+  gap: 1rem;
 }
 
+/* Title Styling */
 .hero-content h1 {
   margin-bottom: 0rem;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
   .hero-content h1 {
     font-size: var(--h2-font-size);
+    line-height: 3rem;
   }
 }
 
@@ -403,7 +429,6 @@ body {
 .hero-content h2 {
   margin-bottom: 0rem;
   margin-top: 0;
-
 }
 
 @media (max-width: 768px) {
@@ -418,11 +443,15 @@ body {
   }
 }
 
+/* Social Icons */
 .social-icons {
   display: flex;
   justify-content: center; /* Center the icons horizontally */
-  gap: 20px; /* Add space between icons */
-  margin-top: 0rem; /* Add some space between the text and the icons */
+  align-items: center; /* Center them vertically within their container */
+  margin-top: 0.5rem; /* Add some space between the text and the icons */
+  gap: 10px;
+  width: auto; /* Ensure the container only takes up as much width as necessary */
+  padding: 0; /* Make sure there's no extra padding */
 }
 
 .social-icons a {
@@ -443,19 +472,23 @@ body {
 
 
 
+
 /* INFO TEXT STYLING */
 .info-text {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 4rem auto; /* Centering the content */
   padding: 2rem;
   text-align: left;
-  background: var(--primary-bg);
+  background: var(--dark-bg);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid transparent; /* Initially transparent */
+  transition: border 0.3s ease-in-out;
 }
 
 .info-text h2 {
   font-size: var(--h2-font-size);
+  font-family: var(--h1-font);
   font-weight: 600;
   color: var(--accent-color);
   text-transform: uppercase;
@@ -465,7 +498,7 @@ body {
 
 .info-text p {
   font-size: var(--body-font-size);
-  line-height: 1.75; /* Improves readability */
+  line-height: 1.7; /* Improves readability */
   color: var(--text-color-invert);
   text-align: justify;
 }
@@ -493,6 +526,11 @@ body {
     line-height: 1.6;
   }
 }
+
+.info-text:hover {
+  border-color: var(--accent-color);
+}
+
 
 
 /* CONTACT BUTTON */
@@ -585,17 +623,56 @@ button:hover, button:hover::before {
   margin: 0 auto; /* Center-aligns within the parent */
 }
 
+#portfolio-gallery h1 {
+  margin-top: 8rem;
+}
+
+#portfolio-gallery h2 {
+  margin-bottom: 4rem;
+}
+
+#portfolio-gallery h3 {
+  padding-bottom: 1rem;
+  margin: 0;
+  font-weight: 600;
+  border-bottom: solid var(--border-color)
+}
+
+
+
+/* ALTERNATING BG COLORS */
+.portfolio-gallery-group:nth-of-type(odd) {
+  background-color: var(--dark-bg);
+}
+
+.portfolio-gallery-group:nth-of-type(even) {
+  background-color: var(--dark-bg2);
+}
+
+.portfolio-gallery-group {
+  opacity: 0;
+  transform: translateY(30px); /* Start slightly lower */
+  -webkit-transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* When the section enters the viewport */
+.portfolio-gallery-group.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .portfolio-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Dynamic grid */
+  grid-template-columns: repeat(auto-fill, minmax(300px, max-content)); /* Dynamic grid */
   gap: 1rem;
   justify-items: center; /* Center items in their grid cell */
-  padding: 0;
+  padding: 1rem;
 }
 
 @media (max-width: 480px) {
   .portfolio-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Flexible sizing */
+    grid-template-columns: repeat(auto-fit, minmax(120px, max-content)); /* Flexible sizing */
     gap: 0.5rem; /* Smaller gap for tighter spacing */
   }
   .portfolio-gallery-item {
@@ -604,45 +681,61 @@ button:hover, button:hover::before {
   }
 }
 
-.portfolio-gallery a {
-  display: inline-block;
-}
-
+/* Ensure the portfolio-gallery-item is positioned relative to contain the overlay */
 .portfolio-gallery-item {
   position: relative;
-  overflow: hidden;
-  width: 100%; /* Adjust width dynamically */
-  max-width: 400px; /* Keep max width reasonable */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-}
-
-.portfolio-gallery-item img {
-  display: block;
+  overflow: hidden; /* Ensure the overlay doesn't overflow */
   width: 100%;
-  height: auto; /* Allow natural height */
-  object-fit: contain; /* No cropping, ensures full image fits */
-  transition: transform 0.3s ease, filter 0.3s ease;
+  padding-bottom: 75%; /* Maintain aspect ratio (4:3) */
+  height: 0;
 }
 
-/* Ensure landscape images don't get too small */
+/* Use a fallback for aspect-ratio */
+.portfolio-gallery-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures full image fits without stretching */
+  object-position: center; /* Center the image */
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: block;
+}
+
+
 .portfolio-gallery-item img.landscape {
   width: 100%; /* Takes full width */
-  height: auto; /* Adjust height proportionally */
-  max-height: 100%; /* Prevents exceeding parent height */
-  object-fit: contain; /* Keeps full image visible */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Keeps full image visible */
+  object-position: center; /* Center the image */
 }
 
-/* Allow portrait images to fit properly */
 .portfolio-gallery-item img.portrait {
   width: auto; /* Adjusts width proportionally */
   height: 100%; /* Takes full height */
-  max-width: 100%; /* Prevents overflow */
-  object-fit: cover; /* Ensures no empty spaces */
+  object-fit: contain;
+  object-position: center; /* Center the image */
 }
 
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;  /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Add -webkit- prefixes for transitions */
 .portfolio-gallery-item .overlay {
   position: absolute;
   top: 0;
@@ -650,9 +743,13 @@ button:hover, button:hover::before {
   width: 100%;
   height: 100%;
   background: rgba(31, 40, 51, 0.5);
+  display: -webkit-flex;
   display: flex;
+  -webkit-flex-direction: column;
   flex-direction: column;
+  -webkit-justify-content: center;
   justify-content: center;
+  -webkit-align-items: center;
   align-items: center;
   opacity: 0;
   color: var(--text-color-invert);
@@ -661,8 +758,8 @@ button:hover, button:hover::before {
   text-align: center;
   padding: 0.5rem;
   box-sizing: border-box;
+  -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
-  border-radius: 8px;
 }
 
 .portfolio-gallery-item .overlay p {
@@ -678,6 +775,7 @@ button:hover, button:hover::before {
 .portfolio-gallery-item:hover img {
   filter: brightness(0.7);
   transform: scale(1.00);
+  cursor: pointer;
 }
 
 .portfolio-gallery-item:hover .overlay {
@@ -689,6 +787,7 @@ button:hover, button:hover::before {
   position: absolute;
   bottom: 0.5rem;
   left: 0.5rem;
+  cursor: pointer;
 }
 
 .portfolio-gallery-group {
@@ -711,16 +810,323 @@ button:hover, button:hover::before {
 
 
 
+/* GALLERY PAGE */
+#headshot-gallery {
+  padding: 3rem;
+}
+
+#headshot-gallery h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Grid Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+  justify-content: center;
+}
+
+/* Headshot Images */
+.gallery img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  aspect-ratio: 2 / 3; /* Ensures consistent aspect ratio (common for headshots) */
+  object-fit: cover; /* Ensures images don’t stretch */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block; /* Fixes Safari rendering bug */
+}
+
+.gallery img.landscape {
+  width: 100%;
+  height: auto;
+  max-height: 250px; /* Keeps it balanced */
+  max-width: 100%;
+  display: block;
+  object-fit: contain; /* Ensures full image fits without stretching */
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  grid-column: span 4; /* Makes it take up four columns */
+}
+
+/* Responsive Fix for Smaller Screens */
+@media (max-width: 900px) {
+  .gallery {
+    padding: 2rem;
+  }
+  .gallery img.landscape {
+    grid-column: span 2; /* Takes only 2 columns */
+  }
+}
+
+@media (max-width: 500px) {
+  .gallery {
+    padding: 2rem;
+  }
+  .gallery img.landscape {
+    grid-column: span 1; /* Behaves like other images */
+  }
+}
+
+/* Hover Effect */
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.gallery img.landscape:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.0);
+}
+
+
+
+
+/* Lightbox Styling */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Visible state when image is clicked */
+#lightbox.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Lightbox Image */
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Close Button */
+#lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+/* Navigation Arrows */
+.lightbox-nav span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+.lightbox-nav .prev {
+  left: 20px;
+}
+
+.lightbox-nav .next {
+  right: 20px;
+}
+
+/* Hover Effect */
+.lightbox-nav span:hover {
+  opacity: 0.7;
+}
+
+
+
+
+
+/* SERVICES PAGE */
+
+#services-introduction {
+  padding: 2rem;
+  margin-top: 8rem;
+}
+
+#services-introduction h1 {
+  margin-top: 0;
+}
+
+#services-section {
+  padding: 2rem;
+}
+
+#services-section p a {
+  color: var(--accent-muted);
+}
+
+.carousel {
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  margin-left: 2rem;
+  overflow: hidden;
+  justify-content: flex-start;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+  text-align: left;
+  border-radius: 8px;
+}
+
+.carousel-item {
+  width: 100%;
+  height: auto;
+  display: none; /* Initially hide all images */
+}
+
+.carousel-item.active {
+  display: block; /* Only show the active image */
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+
+/* TEACHING PAGE */
+.full-image {
+  width: 75vw; /* 90% of the viewport width */
+  max-width: 800px; /* Prevents it from getting too large on big screens */
+  height: auto; /* Keeps aspect ratio */
+  display: block; /* Removes extra spacing below inline images */
+  margin: 0 auto; /* Centers the image */
+  border-radius: 8px; /* Optional: adds rounded corners */
+}
+
+#teaching-img {
+  margin-top: 8rem;
+}
+
+
+
+
+
+
+/* CONTACT PAGE */
+.page-with-background {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('images/MIELENMAISEMAKUVAT/Mielenmaisemakuva1_nettisivut.jpg'); /* Background image */
+  background-size: cover;
+  background-position: center left;
+  background-repeat: no-repeat;
+  position: relative; /* For overlay positioning */
+}
+
+/* Add the overlay effect */
+.page-with-background::after {
+  content: ''; /* Empty content to create a pseudo-element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--primary-bg);
+  opacity: 0.7; /* Adjust the opacity */
+  z-index: 1; /* Overlay should be above the image, below the content */
+}
+
+/* Contact info styling */
+#contact-info {
+  text-align: center;
+  margin-top: 15rem;
+  position: relative; /* Ensure content is positioned above the overlay */
+  z-index: 2; /* Ensure it's above the overlay */
+}
+
+#contact-info a {
+  text-decoration: underline var(--accent-muted);
+  z-index: 2;
+}
+
+#contact-info h2 {
+  color: black;
+  z-index: 2;
+}
+
+#contact-info .button-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  gap: 20px; /* Space between buttons */
+  z-index: 2;
+}
+
+#contact-info .button-container a {
+  text-decoration: none;
+  z-index: 2;
+}
+
+.flare-button {
+  z-index: 2;
+}
+
+
+
+
+
 
 footer {
   background-color: #1f2833; /* Dark background for contrast */
-  color: #ffffff; /* Light text for readability */
+  color: var(--text-color-muted); /* Light text for readability */
   text-align: center;
   padding: 2rem 1rem;
   font-size: 0.9rem;
   font-family: var(--main-font);
   position: relative;
   width: 100%;
+  z-index: 2;
 }
 
 footer p {
