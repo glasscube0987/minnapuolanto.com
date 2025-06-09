@@ -100,21 +100,22 @@ document.querySelectorAll('.dropdown').forEach(dropdown => {
   });
 
 
-
-  /* GALLERY PAGE LIGHTBOX FUNCTIONALITY */
+  /* LIGHTBOX GALLERY */
+  // Lightbox functionality for portfolio images
   document.addEventListener("DOMContentLoaded", function () {
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
     const closeBtn = document.querySelector(".close");
     const prevBtn = document.querySelector(".prev");
     const nextBtn = document.querySelector(".next");
-    const images = document.querySelectorAll(".gallery-img");
   
+    const images = Array.from(document.querySelectorAll(".gallery-img"));
     let currentIndex = 0;
   
     function openLightbox(index) {
       currentIndex = index;
       lightboxImg.src = images[currentIndex].src;
+      updateCredit();
       lightbox.classList.add("show");
     }
   
@@ -123,36 +124,44 @@ document.querySelectorAll('.dropdown').forEach(dropdown => {
     }
   
     function showNext() {
-      currentIndex = (currentIndex + 1) % images.length; // Loop back to first image
+      currentIndex = (currentIndex + 1) % images.length;
       lightboxImg.src = images[currentIndex].src;
+      updateCredit();
     }
   
     function showPrev() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length; // Loop to last image
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
       lightboxImg.src = images[currentIndex].src;
+      updateCredit();
     }
   
-    // Open lightbox when an image is clicked
+    function updateCredit() {
+      const credit = images[currentIndex].dataset.credit;
+      const creditDisplay = document.getElementById("lightbox-credit");
+      if (creditDisplay) {
+        creditDisplay.textContent = credit || "";
+      }
+    }
+  
+    // Add event listeners to all images
     images.forEach((img, index) => {
       img.addEventListener("click", function () {
         openLightbox(index);
       });
     });
   
-    // Close lightbox
+    // Close logic
     closeBtn.addEventListener("click", closeLightbox);
     lightbox.addEventListener("click", (e) => {
-      if (e.target !== lightboxImg && !e.target.classList.contains("prev") && !e.target.classList.contains("next")) {
-        closeLightbox();
-      }
+      if (e.target === lightbox) closeLightbox();
     });
   
-    // Arrow navigation
+    // Navigation
     nextBtn.addEventListener("click", showNext);
     prevBtn.addEventListener("click", showPrev);
   
-    // Keyboard controls
     document.addEventListener("keydown", function (e) {
+      if (!lightbox.classList.contains("show")) return;
       if (e.key === "Escape") closeLightbox();
       if (e.key === "ArrowRight") showNext();
       if (e.key === "ArrowLeft") showPrev();
@@ -160,38 +169,68 @@ document.querySelectorAll('.dropdown').forEach(dropdown => {
   });
   
 
-  /* CAROUSEL GALLERY ON SERVICES PAGE */
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".carousel").forEach(carousel => {
-        const items = carousel.querySelectorAll(".carousel-item");
-        const prevButton = carousel.querySelector(".carousel-btn.prev");
-        const nextButton = carousel.querySelector(".carousel-btn.next");
-        let index = 0;
+  
 
-        function showImage(newIndex) {
-            if (newIndex < 0) {
-                index = items.length - 1;
-            } else if (newIndex >= items.length) {
-                index = 0;
-            } else {
-                index = newIndex;
-            }
+/* CAROUSEL GALLERY ON SERVICES PAGE */
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".carousel").forEach(carousel => {
+    const items = carousel.querySelectorAll(".carousel-item");
+    const prevButton = carousel.querySelector(".carousel-btn.prev");
+    const nextButton = carousel.querySelector(".carousel-btn.next");
+    let index = 0;
 
-            // Hide all images in this carousel
-            items.forEach(item => item.classList.remove("active"));
-            
-            // Show the new active image
-            items[index].classList.add("active");
-        }
+    function showImage(newIndex) {
+      if (newIndex < 0) {
+        index = items.length - 1;
+      } else if (newIndex >= items.length) {
+        index = 0;
+      } else {
+        index = newIndex;
+      }
 
-        // Event Listeners (specific to this carousel)
-        nextButton.addEventListener("click", () => showImage(index + 1));
-        prevButton.addEventListener("click", () => showImage(index - 1));
+      // Hide all images in this carousel
+      items.forEach(item => item.classList.remove("active"));
 
-        // Initialize first image in this carousel
-        showImage(index);
+      // Show the new active image
+      items[index].classList.add("active");
+    }
+
+    // Button Event Listeners
+    nextButton.addEventListener("click", () => showImage(index + 1));
+    prevButton.addEventListener("click", () => showImage(index - 1));
+
+    // Initialize first image
+    showImage(index);
+
+    // Swipe support
+    const container = carousel.querySelector('.carousel-container');
+    let startX = 0;
+    let endX = 0;
+
+    container.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
     });
+
+    container.addEventListener('touchmove', function (e) {
+      endX = e.touches[0].clientX;
+    });
+
+    container.addEventListener('touchend', function () {
+      if (startX && endX) {
+        const diffX = startX - endX;
+        if (Math.abs(diffX) > 50) {
+          if (diffX > 0) {
+            showImage(index + 1); // Swipe left
+          } else {
+            showImage(index - 1); // Swipe right
+          }
+        }
+      }
+      startX = endX = 0;
+    });
+  });
 });
+
 
 
 
