@@ -567,6 +567,10 @@ body {
   }
 }
 
+.hero-content h3 {
+  font-weight: 300;
+}
+
 .kuka-links {
   display: flex;
   flex-direction: column;
