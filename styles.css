@@ -388,7 +388,23 @@ nav ul li a.active {
 
 
 
+.header-subtitle {
+  display: none; /* Oletuksena piilotettu */
+  font-size: 0.8rem;
+  color: var(--text-color); /* tai esim. #fff jos tummapohjainen header */
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-top: 0.2rem;
+  text-align: center;
+}
 
+/* Näytä vain mobiilissa */
+@media (max-width: 600px) {
+  .header-subtitle {
+    display: block;
+  }
+}
 
 
 
