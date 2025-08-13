@@ -1278,7 +1278,6 @@ body {
 
 
 
-
 .clown-container p a {
   color: var(--accent-color);
 }
@@ -1303,13 +1302,21 @@ body {
 
 @media (max-width: 900px) {
   #services-introduction h1{
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .clowns-section {
     grid-template-columns: repeat(1, 1fr);
   }
 
+  .clown-container {
+    padding: 2rem;
+    margin: 0.5rem;
+  }
+
+  #services-introduction {
+    padding: 0rem;
+  }
   
 }
 
@@ -1333,6 +1340,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
 }
 
 .carousel-item {
@@ -1340,6 +1348,7 @@ body {
   height: auto;
   display: none; /* Initially hide all images */
   object-fit: contain;
+  border-radius: 8px;
 }
 
 .carousel-item.active {
@@ -1367,6 +1376,28 @@ body {
   right: 10px;
 }
 
+@media (max-width: 900px) {
+  .carousel {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    justify-content: center; /* keskittää kuvat */
+  }
+
+  .carousel-container {
+    width: 100%;
+    max-width: 100%;
+    height: auto; /* poistaa kiinteän 600px korkeuden */
+  }
+
+  .carousel-item {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* pitää mittasuhteet */
+  }
+}
+
+
 .blog-text {
   padding: 2rem;
   max-width: 85%;
@@ -1388,6 +1419,10 @@ body {
 @media (max-width: 900px) {
   .blog-text h1 {
     font-size: calc(var(--h2-font-size) + 0.1rem);
+  }
+
+  .blog-text .klovneria-titles {
+    font-size: calc(var(--h2-font-size) + 0.5rem);
   }
 }
 
@@ -1490,7 +1525,6 @@ body {
   display: grid;
   grid-template-columns: repeat(1, minmax(700px, 1fr));
   gap: 1.5rem;
-  max-width: 150px;
   margin: 2rem;
   margin-top: 1rem;
 }
@@ -1498,23 +1532,29 @@ body {
 .karanteenimuotia-gallery img {
   width: 100%;
   height: auto;
-  max-height: 100%;
-  object-fit: cover; /* Ensures images don’t stretch */
-  display: block; /* Fixes Safari rendering bug */
-  border-radius: 0px;
+  max-width: clamp(150px, 40vw, 700px); /* responsive mittakaava */
+  display: block;
+  object-fit: cover;
 }
+
 
 @media (max-width: 900px) {
   .karanteenimuotia-gallery {
-    grid-template-columns: repeat(1, minmax(700px, 1fr));
+    grid-template-columns: 1fr; /* sama yksinkertaisesti */
   }
 }
 
 @media (max-width: 600px) {
   .karanteenimuotia-gallery {
-    grid-template-columns: repeat(1, minmax(500px, 1fr));
+    grid-template-columns: 1fr; /* yksi sarake täyttää ruudun */
+    margin: 1rem; /* pienempi marginaali */
   }
+
+  .karanteenimuotia-gallery img {
+    width: 100%; /* Kuva täyttää sarakkeen */
+    max-width: 100%; /* Estää kuvan liian suuren skaalautumisen tabletilla */
 }
+
 
 .karanteenimuotia-infotext {
   max-width: 60vh;
@@ -1598,3 +1638,35 @@ footer a {
 
 
 
+/* ✅ Yleinen mobiilikorjaus */
+@media (max-width: 900px) {
+  body, main {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden; /* estää vaakasuoran scrollin */
+  }
+
+  /* Header ja navigointi */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem; /* pienempi padding mobiilissa */
+    box-sizing: border-box;
+  }
+
+  nav {
+    max-width: 100%;
+  }
+
+  /* Hamburger menu varmistus */
+  .hamburger {
+    position: relative;
+    right: 0;
+    margin-left: auto;
+    flex-shrink: 0; /* estää kutistumisen */
+  }
+
+}
+}
