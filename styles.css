@@ -1560,7 +1560,7 @@ body {
   max-width: 60vh;
 }
 
-
+}
 
 
 footer {
@@ -1574,6 +1574,7 @@ footer {
   width: 100%;
   border-top: solid var(--border-color);
   z-index: 2;
+  margin-top: auto;
 }
 
 footer p {
@@ -1668,5 +1669,4 @@ footer a {
     flex-shrink: 0; /* estää kutistumisen */
   }
 
-}
 }
