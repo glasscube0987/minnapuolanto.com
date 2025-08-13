@@ -886,7 +886,7 @@ body {
 
 /* Item container styles */
 .portfolio-gallery-item {
-  display: flex;
+  display: block;
   flex-direction: column;
   position: relative;
   width: 100%;
@@ -908,6 +908,27 @@ body {
   border-radius: 8px;
 }
 
+.portfolio-gallery-item-imdb {
+  display: block;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3; /* Consistent aspect ratio */
+  margin-bottom: 0rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.0);
+}
+
+.portfolio-gallery-item-imdb img{
+  width: 80%;
+  height: 80%;
+  object-fit: contain; 
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border-radius: 8px;
+}
+
 .imdb-info {
   font-size: larger;
   text-align: left;
@@ -921,6 +942,7 @@ body {
   width: 100%;
   padding-bottom: 56.25%; /* 16:9 aspect ratio for video */
   overflow: hidden;
+  height: 0;
   
 }
 
@@ -931,8 +953,8 @@ body {
   width: 100%;
   height: 100%;
   border: none;
-  padding-bottom: 2rem;
-  padding-top: 1rem;
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
 }
 
 /* Overlay for portfolio items */
