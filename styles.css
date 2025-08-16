@@ -1444,7 +1444,7 @@ body {
   }
 
   .blog-text .klovneria-titles {
-    font-size: calc(var(--h2-font-size) + 0.5rem);
+    font-size: var(--h2-font-size);
   }
 }
 
